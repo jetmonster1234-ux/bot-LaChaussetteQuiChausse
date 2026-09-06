@@ -67,6 +67,16 @@ class Voc(commands.Cog):
             voice_client.stop()
         await voice_client.disconnect()
 
+    @patientez.error
+    async def patientez_error(self, ctx, error):
+        if isinstance(error, commands.MemberNotFound):
+            await ctx.send(
+                "Membre introuvable. Utilisez une mention, par exemple "
+                "`$attendre @mon_double_compte`."
+            )
+            return
+        raise error
+
     @commands.hybrid_command(
         name="stop_attendre",
         description="Arrête de faire patienter les gens",
