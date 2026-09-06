@@ -56,6 +56,7 @@ class Voc(commands.Cog):
             source = discord.PCMVolumeTransformer(
                 discord.FFmpegPCMAudio(str(audio_path))
             )
+            print(f"Lecture du fichier audio : {audio_path}")
             voice_client.play(source, after=on_audio_error)
 
             while voice_client.is_playing():
