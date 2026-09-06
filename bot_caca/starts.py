@@ -12,6 +12,12 @@ class MyBot(commands.Bot):
     async def setup_hook(self):
         for extension in ["cogs.commandes", "cogs.voc"]:
             await self.load_extension(extension)
+        synced_commands = await self.tree.sync()
+        signatures = [
+            f"{command.name}({', '.join(option.name for option in command.parameters)})"
+            for command in synced_commands
+        ]
+        print(f"Commandes slash synchronisees: {', '.join(signatures)}")
 
 
 intents = discord.Intents.all()
