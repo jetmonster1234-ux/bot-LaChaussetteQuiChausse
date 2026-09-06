@@ -13,11 +13,10 @@ class MyBot(commands.Bot):
         for extension in ["cogs.commandes", "cogs.voc"]:
             await self.load_extension(extension)
         synced_commands = await self.tree.sync()
-        signatures = [
-            f"{command.name}({', '.join(option.name for option in command.parameters)})"
-            for command in synced_commands
-        ]
-        print(f"Commandes slash synchronisees: {', '.join(signatures)}")
+        print(
+            "Commandes slash synchronisees: "
+            f"{', '.join(command.name for command in synced_commands)}"
+        )
 
 
 intents = discord.Intents.all()
